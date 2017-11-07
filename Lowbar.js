@@ -15,4 +15,15 @@ _.first = (input, n) => {
   return undefined;
 };
 
+_.last = (input, n) => {
+  if (typeof input === "string") {
+    input = input.split("");
+  }
+  if (Array.isArray(input)) {
+    if (n) return input.slice(input.length - n, input.length);
+    return input[input.length - 1];
+  }
+  return undefined;
+};
+
 module.exports = _;
