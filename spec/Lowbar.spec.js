@@ -1,6 +1,7 @@
 const expect = require("chai").expect;
 const path = require("path");
 const _ = require(path.join(__dirname, "..", "./Lowbar.js"));
+const sinon = require("sinon");
 
 describe("_", () => {
   "use strict";
@@ -129,6 +130,42 @@ describe("_", () => {
         "o",
         "n"
       ]);
+    });
+  });
+
+  describe("#each", () => {
+    it("is a function", () => {
+      expect(_.each).to.be.a("function");
+    });
+    it("it should count the number of iterations in the function", () => {
+      const spy = sinon.spy();
+      _.each([1, 2, 3], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+    it("calls the iteratee passing each element of the array as the first argument", () => {
+      const spy = sinon.spy();
+      _.each([1, 2, 3], spy);
+      expect(spy.firstCall.calledWithExactly(1, 0, [1, 2, 3])).to.equal(true);
+      expect(spy.secondCall.calledWithExactly(2, 1, [1, 2, 3])).to.equal(true);
+      expect(spy.thirdCall.calledWithExactly(3, 2, [1, 2, 3])).to.equal(true);
+    });
+    it("calls the iteratee for each key value pair in an object", () => {
+      const spy = sinon.spy();
+      _.each({ one: 1, two: 2, three: 3 }, spy);
+      expect(spy.callCount).to.equal(3);
+      expect(
+        spy.firstCall.calledWithExactly(1, "one", { one: 1, two: 2, three: 3 })
+      ).to.equal(true);
+      expect(
+        spy.secondCall.calledWithExactly(2, "two", { one: 1, two: 2, three: 3 })
+      ).to.equal(true);
+      expect(
+        spy.thirdCall.calledWithExactly(3, "three", {
+          one: 1,
+          two: 2,
+          three: 3
+        })
+      ).to.equal(true);
     });
   });
 });

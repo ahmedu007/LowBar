@@ -26,4 +26,16 @@ _.last = (input, n) => {
   return undefined;
 };
 
+_.each = (list, iteratee) => {
+  if (Array.isArray(list) || typeof list === "string") {
+    for (let i = 0; i < list.length; i++) {
+      iteratee(list[i], i, list);
+    }
+  } else {
+    for (let key in list) {
+      iteratee(list[key], key, list);
+    }
+  }
+};
+
 module.exports = _;
