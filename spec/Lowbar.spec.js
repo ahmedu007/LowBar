@@ -253,4 +253,33 @@ describe("_", () => {
       expect(spy.callCount).to.equal(3);
     });
   });
+
+  describe("#uniq", () => {
+    it("is a function", () => {
+      expect(_.uniq).to.be.a("function");
+    });
+    it("returns an empty array for invalid arguments", () => {
+      expect(_.uniq({})).to.eql([]);
+      expect(_.uniq(4)).to.eql([]);
+      expect(_.uniq(4141)).to.eql([]);
+    });
+    it("returns a unique array with only 1st occurance of each value", () => {
+      expect(_.uniq([1, 2, 2, 3, 3, 1, 4])).to.eql([1, 2, 3, 4]);
+      expect(_.uniq([1, 2, "2", 3, 3, "2", 1, 4])).to.eql([1, 2, "2", 3, 4]);
+      expect(_.uniq([1, 2, [2, 3], 3, 1, 4])).to.eql([1, 2, [2, 3], 3, 4]);
+    });
+    it("returns unique characters in a string in an array", () => {
+      expect(_.uniq("test")).to.eql(["t", "e", "s"]);
+      expect(_.uniq("Hello World")).to.eql([
+        "H",
+        "e",
+        "l",
+        "o",
+        " ",
+        "W",
+        "r",
+        "d"
+      ]);
+    });
+  });
 });

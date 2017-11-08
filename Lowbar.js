@@ -68,4 +68,18 @@ _.reject = (list, predicate) => {
   return results;
 };
 
+_.uniq = array => {
+  if (typeof array === "string") {
+    array.split("");
+  }
+  // if (!Array.isArray(array)) return [];
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    if (!result.includes(array[i])) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+};
+
 module.exports = _;
