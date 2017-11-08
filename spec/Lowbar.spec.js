@@ -220,4 +220,37 @@ describe("_", () => {
       expect(spy.callCount).to.equal(3);
     });
   });
+
+  describe("#reject", () => {
+    it("is a function", () => {
+      expect(_.reject).to.be.a("function");
+    });
+    it("returns an empty array for invalid arguments", () => {
+      expect(_.reject("test")).to.eql([]);
+      expect(_.reject({})).to.eql([]);
+      expect(_.reject(4)).to.eql([]);
+    });
+    it("returns an array of all the values that do not pass a truth test", () => {
+      expect(
+        _.reject([1, 2, 3, 4], num => {
+          return num % 2 === 0;
+        })
+      ).to.eql([1, 3]);
+      expect(
+        _.reject([1, "a", 3, "b"], elem => {
+          return typeof elem === "number";
+        })
+      ).to.eql(["a", "b"]);
+      expect(
+        _.reject([1, "a", 3, "b"], elem => {
+          return typeof elem === "string";
+        })
+      ).to.eql([1, 3]);
+    });
+    it("expects callback to be called on each element of passed array", () => {
+      const spy = sinon.spy();
+      _.filter(["A", "B", "C"], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+  });
 });

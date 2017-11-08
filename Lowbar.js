@@ -57,4 +57,15 @@ _.filter = (list, predicate) => {
   return results;
 };
 
+_.reject = (list, predicate) => {
+  if (!Array.isArray(list)) return [];
+  let results = [];
+  for (let i = 0; i < list.length; i++) {
+    if (!predicate(list[i])) {
+      results.push(list[i]);
+    }
+  }
+  return results;
+};
+
 module.exports = _;
