@@ -46,4 +46,15 @@ _.indexOf = (array, value, boolean) => {
   return -1;
 };
 
+_.filter = (list, predicate) => {
+  if (!Array.isArray(list)) return [];
+  let results = [];
+  for (let i = 0; i < list.length; i++) {
+    if (predicate(list[i])) {
+      results.push(list[i]);
+    }
+  }
+  return results;
+};
+
 module.exports = _;

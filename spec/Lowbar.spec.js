@@ -187,4 +187,37 @@ describe("_", () => {
       expect(_.indexOf([1, 2, 3, 4, 5, 6, 7, 8], 7, true)).to.equal(6);
     });
   });
+
+  describe("#filter", () => {
+    it("is a function", () => {
+      expect(_.filter).to.be.a("function");
+    });
+    it("returns an empty array for invalid arguments", () => {
+      expect(_.filter("test")).to.eql([]);
+      expect(_.filter({})).to.eql([]);
+      expect(_.filter(4)).to.eql([]);
+    });
+    it("returns an array of all the values that pass a truth test", () => {
+      expect(
+        _.filter([1, 2, 3, 4], num => {
+          return num % 2 === 0;
+        })
+      ).to.eql([2, 4]);
+      expect(
+        _.filter([1, "a", 3, "b"], elem => {
+          return typeof elem === "string";
+        })
+      ).to.eql(["a", "b"]);
+      expect(
+        _.filter([1, "a", 3, "b"], elem => {
+          return typeof elem === "number";
+        })
+      ).to.eql([1, 3]);
+    });
+    it("expects callback to be called on each element of passed array", () => {
+      const spy = sinon.spy();
+      _.filter(["A", "B", "C"], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+  });
 });
