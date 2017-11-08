@@ -38,4 +38,12 @@ _.each = (list, iteratee) => {
   }
 };
 
+_.indexOf = (array, value, boolean) => {
+  if (!Array.isArray(array)) return -1;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === value) return i;
+  }
+  return -1;
+};
+
 module.exports = _;

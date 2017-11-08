@@ -168,4 +168,23 @@ describe("_", () => {
       ).to.equal(true);
     });
   });
+
+  describe("#indexOf", () => {
+    it("is a function", () => {
+      expect(_.indexOf).to.be.a("function");
+    });
+    it("return the index of the value in the array", () => {
+      expect(_.indexOf([1, 2, 3, "a"], 3)).to.equal(2);
+      expect(_.indexOf([1, 2, 3, "a"], "a")).to.equal(3);
+    });
+    it("return -1 if value is not present in the array", () => {
+      expect(_.indexOf([1, 2, 3, "a"], 4)).to.equal(-1);
+    });
+    it("returns -1 when invalid inputs are given", () => {
+      expect(_.indexOf()).to.equal(-1);
+    });
+    it("uses a faster binary search if isSorted is true", () => {
+      expect(_.indexOf([1, 2, 3, 4, 5, 6, 7, 8], 7, true)).to.equal(6);
+    });
+  });
 });
