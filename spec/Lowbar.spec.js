@@ -282,4 +282,36 @@ describe("_", () => {
       ]);
     });
   });
+
+  describe("#map", () => {
+    it("is a function", () => {
+      expect(_.map).to.be.a("function");
+    });
+    it("return an empty array if the argument is not an array", () => {
+      expect(_.map(5)).to.eql([]);
+      expect(_.map(true)).to.eql([]);
+      expect(_.map(undefined)).to.eql([]);
+    });
+    it("applies the function to the array", () => {
+      expect(
+        _.map([1, 2, 3], num => {
+          return num * 3;
+        })
+      ).to.eql([3, 6, 9]);
+    });
+    it("applies the function to the string", () => {
+      expect(
+        _.map("123", num => {
+          return num * 3;
+        })
+      ).to.eql([3, 6, 9]);
+    });
+    it("applies the function to the object", () => {
+      expect(
+        _.map({ one: 1, two: 2, three: 3 }, num => {
+          return num * 3;
+        })
+      ).to.eql([3, 6, 9]);
+    });
+  });
 });
