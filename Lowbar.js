@@ -126,4 +126,20 @@ _.reduce = (list, iteratee, acc) => {
   return acc;
 };
 
+_.once = fn => {
+  if (typeof fn !== "function") return fn;
+  let alreadyCalled = false;
+  let returnValue;
+
+  if (alreadyCalled) return returnValue;
+
+  return () => {
+    if (!alreadyCalled) {
+      alreadyCalled = true;
+      returnValue = fn.apply(null, arguments);
+    }
+    return returnValue;
+  };
+};
+
 module.exports = _;

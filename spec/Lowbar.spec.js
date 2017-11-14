@@ -378,12 +378,32 @@ describe("_", () => {
       expect(
         _.reduce(
           [1, 2, 3, 4],
-          function(acc, num) {
+          (acc, num) => {
             return acc + num;
           },
           0
         )
       ).to.eql(10);
+    });
+  });
+
+  describe("#once", () => {
+    it("is a function", () => {
+      expect(_.once).to.be.a("function");
+    });
+    it("the returned function can only be called once", () => {
+      const spy = sinon.spy();
+      const spyOnce = _.once(spy);
+      spyOnce();
+      spyOnce();
+      spyOnce();
+      spyOnce();
+      expect(spy.callCount).to.equal(1);
+    });
+    it("handles invalid inputs", () => {
+      expect(_.once()).to.equal(undefined);
+      expect(_.once(false)).to.equal(false);
+      expect(_.once([1])).to.eql([1]);
     });
   });
 });
