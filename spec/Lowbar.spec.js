@@ -340,16 +340,16 @@ describe("_", () => {
     });
   });
 
-  describe("#pluck", function() {
-    it("is a function", function() {
+  describe("#pluck", () => {
+    it("is a function", () => {
       expect(_.pluck).to.be.a("function");
     });
-    it("should return an empty array for invalid arguments", function() {
+    it("should return an empty array for invalid arguments", () => {
       expect(_.pluck("str")).to.eql([]);
       expect(_.pluck(5)).to.eql([]);
       expect(_.pluck(undefined)).to.eql([]);
     });
-    it("returns an array of property values", function() {
+    it("returns an array of property values", () => {
       expect(_.pluck([{ name: "moe", age: 40 }], "age")).to.eql([40]);
       expect(_.pluck([{ name: "moe", age: 40 }], "name")).to.eql(["moe"]);
       expect(
@@ -362,6 +362,28 @@ describe("_", () => {
           "name"
         )
       ).to.eql(["moe", "mia", "jack"]);
+    });
+  });
+
+  describe("#reduce", () => {
+    it("is a function", () => {
+      expect(_.reduce).to.be.a("function");
+    });
+    it("returns an empty array for invalid arguments", () => {
+      expect(_.reduce("str")).to.eql(undefined);
+      expect(_.reduce()).to.eql(undefined);
+      expect(_.reduce(undefined)).to.eql(undefined);
+    });
+    it("returns the sum of all the items in the list", () => {
+      expect(
+        _.reduce(
+          [1, 2, 3, 4],
+          function(acc, num) {
+            return acc + num;
+          },
+          0
+        )
+      ).to.eql(10);
     });
   });
 });

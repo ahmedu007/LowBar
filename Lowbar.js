@@ -117,4 +117,13 @@ _.pluck = (list, property) => {
   return result;
 };
 
+_.reduce = (list, iteratee, acc) => {
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      acc += list[i];
+    }
+  }
+  return acc;
+};
+
 module.exports = _;
