@@ -313,6 +313,7 @@ describe("_", () => {
       ).to.eql([3, 6, 9]);
     });
   });
+
   describe("#contains", () => {
     it("is a function", () => {
       expect(_.contains).to.be.a("function");
@@ -334,7 +335,33 @@ describe("_", () => {
     });
     it("returns true when the value is present in an object", () => {
       expect(_.contains({ one: 1, two: 2, three: 3 }, 2)).to.equal(true);
+      expect(_.contains({ name: "moe", age: 40 }, "moe")).to.equal(true);
       expect(_.contains({ one: 1, two: 2, three: 3 }, 3)).to.equal(true);
+    });
+  });
+
+  describe("#pluck", function() {
+    it("is a function", function() {
+      expect(_.pluck).to.be.a("function");
+    });
+    it("should return an empty array for invalid arguments", function() {
+      expect(_.pluck("str")).to.eql([]);
+      expect(_.pluck(5)).to.eql([]);
+      expect(_.pluck(undefined)).to.eql([]);
+    });
+    it("returns an array of property values", function() {
+      expect(_.pluck([{ name: "moe", age: 40 }], "age")).to.eql([40]);
+      expect(_.pluck([{ name: "moe", age: 40 }], "name")).to.eql(["moe"]);
+      expect(
+        _.pluck(
+          [
+            { name: "moe", age: 40 },
+            { name: "mia", age: 35 },
+            { name: "jack", age: 25 }
+          ],
+          "name"
+        )
+      ).to.eql(["moe", "mia", "jack"]);
     });
   });
 });

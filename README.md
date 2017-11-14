@@ -1,4 +1,4 @@
-<p><strong>LOWBAR</strong></p>
+<h2><p><strong>LOWBAR</strong></p></h2>
 <small><em>Underscore Library reacreated</em></small>
 
 <hr />
@@ -16,10 +16,27 @@ The library consists of:
 9. uniq
 10. map
 11. contains
+12. once
+13. shuffle
+14. invoke
+15. sortBy (NB the Underscore library uses the native JavaScript sort but feel free to use your sort algorithm!)
+16. zip
+17. sortedIndex
+18. flatten
+19. intersection
+20. difference
+21. memoize
+22. negate
 
-12. pluck
-13. reduce
-14. some
-15. extends
-16. defaults
-17. every
+## Advanced
+
+23. where
+24. throttle
+25. partial
+26. pluck
+27. delay
+28. reduce
+29. some
+30. extends
+31. defaults
+32. every

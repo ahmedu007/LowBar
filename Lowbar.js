@@ -103,4 +103,18 @@ _.contains = (input, value) => {
   return false;
 };
 
+_.pluck = (list, property) => {
+  let result = [];
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      for (let key in list[i]) {
+        if (key === property) {
+          result.push(list[i][key]);
+        }
+      }
+    }
+  }
+  return result;
+};
+
 module.exports = _;
