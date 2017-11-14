@@ -79,21 +79,28 @@ _.uniq = array => {
 };
 
 _.map = (input, fn) => {
-  if (typeof input === "string") {
-    input = input.split("");
-  }
   let result = [];
-  if (Array.isArray(input)) {
-    for (let i = 0; i < input.length; i++) {
-      result.push(fn(input[i]));
-    }
-  }
   if (typeof input === "object" && !Array.isArray(input)) {
     for (let key in input) {
       result.push(fn(input[key]));
     }
   }
+  for (let i = 0; i < input.length; i++) {
+    result.push(fn(input[i]));
+  }
   return result;
+};
+
+_.contains = (input, value) => {
+  if (typeof input === "object" && !Array.isArray(input)) {
+    for (let key in input) {
+      if (input[key] === value) return true;
+    }
+  }
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === value) return true;
+  }
+  return false;
 };
 
 module.exports = _;

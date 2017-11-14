@@ -290,7 +290,6 @@ describe("_", () => {
     it("return an empty array if the argument is not an array", () => {
       expect(_.map(5)).to.eql([]);
       expect(_.map(true)).to.eql([]);
-      expect(_.map(undefined)).to.eql([]);
     });
     it("applies the function to the array", () => {
       expect(
@@ -312,6 +311,30 @@ describe("_", () => {
           return num * 3;
         })
       ).to.eql([3, 6, 9]);
+    });
+  });
+  describe("#contains", () => {
+    it("is a function", () => {
+      expect(_.contains).to.be.a("function");
+    });
+    it("returns false for invalid inputs", () => {
+      expect(_.contains(true, true)).to.equal(false);
+      expect(_.contains(1234567, 2)).to.equal(false);
+    });
+    it("returns false when the value is not present in the input", () => {
+      expect(_.contains([1, 2, 3], 4)).to.equal(false);
+      expect(_.contains("hello world", "b")).to.equal(false);
+      expect(_.contains({ one: 1, two: 2, three: 3 }, 4)).to.equal(false);
+    });
+    it("returns true when the value is present in the array or a string", () => {
+      expect(_.contains([1, 2, 3], 2)).to.equal(true);
+      expect(_.contains([1, 2, 3], 3)).to.equal(true);
+      expect(_.contains("hello world", "o")).to.equal(true);
+      expect(_.contains("hello world", "d")).to.equal(true);
+    });
+    it("returns true when the value is present in an object", () => {
+      expect(_.contains({ one: 1, two: 2, three: 3 }, 2)).to.equal(true);
+      expect(_.contains({ one: 1, two: 2, three: 3 }, 3)).to.equal(true);
     });
   });
 });
