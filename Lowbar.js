@@ -142,4 +142,25 @@ _.once = fn => {
   };
 };
 
+_.shuffle = input => {
+  let result = [];
+  if (!Array.isArray(input) && typeof input === "object") {
+    for (let key in input) {
+      result.push(input[key]);
+    }
+    input = result;
+  }
+  if (typeof input === "string") {
+    input = input.split("");
+  }
+  if (Array.isArray(input)) {
+    for (let i = 0; i < input.length; i++) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [input[i], input[j]] = [input[j], input[i]];
+    }
+    return input;
+  }
+  return result;
+};
+
 module.exports = _;

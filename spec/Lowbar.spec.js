@@ -406,4 +406,55 @@ describe("_", () => {
       expect(_.once([1])).to.eql([1]);
     });
   });
+
+  describe("#shuffle", () => {
+    it("is a function", () => {
+      expect(_.shuffle).to.be.a("function");
+    });
+    it("should return a shuffled copy of the array", () => {
+      const actual = _.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      expect(actual).to.be.an("array");
+      expect(actual).to.not.eql(expected);
+    });
+    it("shuffles a string chars into an array", () => {
+      const actual = _.shuffle("Hello World");
+      const expected = ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"];
+      expect(actual).to.not.eql(expected);
+    });
+    it("should return a shuffled copy of the object", () => {
+      const actual = _.shuffle({
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5,
+        six: 6,
+        seven: 7,
+        eight: 8,
+        nine: 9,
+        ten: 10
+      });
+      const expected = {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5,
+        six: 6,
+        seven: 7,
+        eight: 8,
+        nine: 9,
+        ten: 10
+      };
+      expect(actual).to.be.an("array");
+      expect(actual).to.not.eql(expected);
+    });
+
+    it("handles invalid inputs", () => {
+      expect(_.shuffle()).to.eql([]);
+      expect(_.shuffle(false)).to.eql([]);
+      expect(_.shuffle([1])).to.eql([1]);
+    });
+  });
 });
