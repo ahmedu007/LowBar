@@ -163,4 +163,13 @@ _.shuffle = input => {
   return result;
 };
 
+_.invoke = (list, methodName, ...args) => {
+  const results = [];
+  const cb = value => {
+    results.push(value[methodName].apply(value, args));
+  };
+  _.each(list, cb);
+  return results;
+};
+
 module.exports = _;

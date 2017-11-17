@@ -457,4 +457,26 @@ describe("_", () => {
       expect(_.shuffle([1])).to.eql([1]);
     });
   });
+
+  describe("#invoke", () => {
+    it("is a function", () => {
+      expect(_.invoke).to.be.a("function");
+    });
+    it("should call sort method on each element in an array and return results in an array", () => {
+      let result = _.invoke([[5, 1, 7], [3, 2, 1]], "sort");
+      expect(result).to.eql([[1, 5, 7], [1, 2, 3]]);
+    });
+    it("should call sort method on each value in an object and return results in an array", () => {
+      let result = _.invoke({ a: [5, 1, 7], b: [3, 2, 66] }, "sort");
+      expect(result).to.eql([[1, 5, 7], [2, 3, 66]]);
+    });
+    it("should pass extra arguments onto method invocation", () => {
+      let result = _.invoke(["lol"], "concat", "bbq");
+      expect(result).to.eql(["lolbbq"]);
+    });
+    it("takes a function name as an argument and applies it to each value an array", () => {
+      let result = _.invoke([[5, 1, 7], [3, 2, 1]], "slice", 1);
+      expect(result).to.be.eql([[1, 7], [2, 1]]);
+    });
+  });
 });
