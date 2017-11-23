@@ -172,4 +172,19 @@ _.invoke = (list, methodName, ...args) => {
   return results;
 };
 
+_.zip = function() {
+  const results = [];
+  if (Array.isArray(arguments[0])) {
+    for (var i = 0; i < arguments[0].length; i++) {
+      var resultsPrior = [];
+      for (var j = 0; j < arguments.length; j++) {
+        resultsPrior.push(arguments[j][i]);
+      }
+      results.push(resultsPrior);
+      resultsPrior = [];
+    }
+  }
+  return results;
+};
+
 module.exports = _;

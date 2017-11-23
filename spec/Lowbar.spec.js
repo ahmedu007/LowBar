@@ -479,4 +479,30 @@ describe("_", () => {
       expect(result).to.be.eql([[1, 7], [2, 1]]);
     });
   });
+
+  describe("#zip ", () => {
+    it("is a function", () => {
+      expect(_.zip).to.be.a("function");
+    });
+
+    it("merges arrays together at their corresponding indexes", () => {
+      const actual = _.zip(
+        ["Jim", "John", "Jimmy"],
+        [60, 70, 80],
+        [true, false, true]
+      );
+      const expected = [
+        ["Jim", 60, true],
+        ["John", 70, false],
+        ["Jimmy", 80, true]
+      ];
+      expect(actual).to.eql(expected);
+    });
+
+    it("handles invalid inputs", () => {
+      expect(_.zip()).to.eql([]);
+      expect(_.zip(false)).to.eql([]);
+      expect(_.zip(123421)).to.eql([]);
+    });
+  });
 });
