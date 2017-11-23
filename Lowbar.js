@@ -187,4 +187,12 @@ _.zip = function() {
   return results;
 };
 
+_.flatten = arr => {
+  return arr.reduce((flat, toFlatten) => {
+    return flat.concat(
+      Array.isArray(toFlatten) ? _.flatten(toFlatten) : toFlatten
+    );
+  }, []);
+};
+
 module.exports = _;

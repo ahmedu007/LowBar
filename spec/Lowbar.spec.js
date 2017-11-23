@@ -505,4 +505,14 @@ describe("_", () => {
       expect(_.zip(123421)).to.eql([]);
     });
   });
+
+  describe("flatten", () => {
+    it("is a function", () => {
+      expect(_.flatten).to.be.a("function");
+    });
+    it("can flatten nested arrays", () => {
+      const nestedArray = [1, [2], [3, [[[4]]]]];
+      expect(_.flatten(nestedArray)).to.eql([1, 2, 3, 4]);
+    });
+  });
 });
