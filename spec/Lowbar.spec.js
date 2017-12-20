@@ -518,7 +518,7 @@ describe("_", () => {
 
   describe("intersection", () => {
     it("is a function", () => {
-      expect(_.flatten).to.be.a("function");
+      expect(_.intersection).to.be.a("function");
     });
 
     it("should take the set intersection of two arrays", () => {
@@ -531,6 +531,27 @@ describe("_", () => {
       const stooges = ["moe", "curly", "larry"];
       const leaders = ["moe", "groucho"];
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+    });
+  });
+
+  describe.only("difference", () => {
+    it("is a function", () => {
+      expect(_.difference).to.be.a("function");
+    });
+
+    it("returns values that are not present in other arrays", () => {
+      const result = _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+      const expected = [1, 3, 4];
+      expect(result).to.eql(expected);
+    });
+
+    it("returns values in array that are not present inside other arrays, when there are multiple other arrays", () => {
+      const result = _.difference(
+        [1, 2, 3, 4, 5],
+        [[13, 14, 1], [11, 12, 3], [11, 15, 5]]
+      );
+      const expected = [2, 4];
+      expect(result).to.eql(expected);
     });
   });
 });

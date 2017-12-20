@@ -210,4 +210,11 @@ _.intersection = (...arrays) => {
   return result;
 };
 
+_.difference = (array, list) => {
+  let arrays = _.flatten(list, true);
+  return array.filter(val => {
+    return !_.contains(arrays, val);
+  });
+};
+
 module.exports = _;
