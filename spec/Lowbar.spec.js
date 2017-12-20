@@ -534,7 +534,7 @@ describe("_", () => {
     });
   });
 
-  describe.only("difference", () => {
+  describe("difference", () => {
     it("is a function", () => {
       expect(_.difference).to.be.a("function");
     });
@@ -552,6 +552,34 @@ describe("_", () => {
       );
       const expected = [2, 4];
       expect(result).to.eql(expected);
+    });
+  });
+
+  describe("#memoize", () => {
+    it("is a function", () => {
+      expect(_.memoize).to.be.a("function");
+    });
+
+    it("should properly return a previously cached result", () => {
+      const func = n => {
+        return n * 2;
+      };
+      const memFunc = _.memoize(func);
+      memFunc(2);
+      const actual = memFunc(2);
+      const expected = actual;
+      expect(actual).to.equal(expected);
+    });
+
+    it("should properly return when there is no matching key stored in the cache", () => {
+      const func = n => {
+        return n * 2;
+      };
+      const memFunc = _.memoize(func);
+      const actual = memFunc(4);
+      const expected = 8;
+      1;
+      expect(actual).to.equal(expected);
     });
   });
 });

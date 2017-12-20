@@ -217,4 +217,12 @@ _.difference = (array, list) => {
   });
 };
 
+_.memoize = passedFunc => {
+  var cache = {};
+  return x => {
+    if (x in cache) return cache[x];
+    return (cache[x] = passedFunc(x));
+  };
+};
+
 module.exports = _;
