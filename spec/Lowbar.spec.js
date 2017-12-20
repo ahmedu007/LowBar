@@ -515,4 +515,22 @@ describe("_", () => {
       expect(_.flatten(nestedArray)).to.eql([1, 2, 3, 4]);
     });
   });
+
+  describe("intersection", () => {
+    it("is a function", () => {
+      expect(_.flatten).to.be.a("function");
+    });
+
+    it("should take the set intersection of two arrays", () => {
+      const stooges = ["moe", "curly", "larry"];
+      const leaders = ["moe", "groucho"];
+      expect(_.intersection(stooges, leaders)).to.eql(["moe"]);
+    });
+
+    it("works for multiple arrays", () => {
+      const stooges = ["moe", "curly", "larry"];
+      const leaders = ["moe", "groucho"];
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+    });
+  });
 });

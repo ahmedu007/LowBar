@@ -195,4 +195,19 @@ _.flatten = arr => {
   }, []);
 };
 
+_.intersection = (...arrays) => {
+  let result = [];
+  let i, j;
+
+  for (i = 0; i < arrays[0].length; i++) {
+    let item = arrays[0][i];
+    if (_.contains(result, item)) continue;
+    for (j = 1; j < arrays.length; j++) {
+      if (!_.contains(arrays[j], item)) break;
+    }
+    if (j === arrays.length) result.push(item);
+  }
+  return result;
+};
+
 module.exports = _;
