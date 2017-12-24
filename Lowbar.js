@@ -242,4 +242,14 @@ _.values = obj => {
   return result;
 };
 
+_.every = (list, predicate) => {
+  if (typeof predicate === "function") {
+    for (let i = 0; i < list.length; i++) {
+      if (predicate(list[i]) !== true) return false;
+    }
+  }
+
+  return true;
+};
+
 module.exports = _;

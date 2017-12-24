@@ -619,4 +619,30 @@ describe("_", () => {
       expect(_.values({ one: 1, two: 2, three: 3 })).to.eql([1, 2, 3]);
     });
   });
+
+  describe("#every", () => {
+    it("it is a function", () => {
+      expect(_.every).to.be.a("function");
+    });
+    it("returns true if not given a valid list", () => {
+      expect(_.every()).to.equal(true);
+      expect(_.every(5)).to.equal(true);
+      expect(_.every("hello")).to.equal(true);
+      expect(_.every(["hello"])).to.equal(true);
+      expect(_.every({ 0: "hello" })).to.equal(true);
+    });
+    it("returns false if an item in an array does not pass the predicate", () => {
+      const isEven = num => {
+        return num % 2 == 0;
+      };
+      expect(_.every([0, 2, 4, 6, 1, 2, 4, 6], isEven)).to.equal(false);
+      expect(_.every([true, 1, null, "yes"], Boolean)).to.equal(false);
+    });
+    it("returns true if all items in an array pass the predicate", () => {
+      const isEven = num => {
+        return num % 2 === 0;
+      };
+      expect(_.every([0, 2, 4, 6], isEven)).to.equal(true);
+    });
+  });
 });
