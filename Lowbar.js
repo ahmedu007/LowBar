@@ -231,4 +231,15 @@ _.negate = predicate => {
   };
 };
 
+_.values = obj => {
+  let result = [];
+  if (Array.isArray(obj)) return obj;
+  if (typeof obj === "object") {
+    for (let key in obj) {
+      result.push(obj[key]);
+    }
+  }
+  return result;
+};
+
 module.exports = _;

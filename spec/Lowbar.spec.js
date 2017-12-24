@@ -598,4 +598,25 @@ describe("_", () => {
       expect(isOdd(1)).to.be.true;
     });
   });
+
+  describe("#values", () => {
+    it("is a function", () => {
+      expect(_.values).to.be.a("function");
+    });
+    it("returns an empty array when not given an array or valid object", () => {
+      expect(_.values()).to.eql([]);
+      expect(_.values("hello")).to.eql([]);
+      expect(_.values(null)).to.eql([]);
+      expect(_.values(5)).to.eql([]);
+      expect(_.values({})).to.eql([]);
+    });
+    it("returns the same array when given an array", () => {
+      expect(_.values(["hello"])).to.eql(["hello"]);
+      expect(_.values([1, 2, 3])).to.eql([1, 2, 3]);
+    });
+    it("returns an array of values when given an object", () => {
+      expect(_.values({ 0: 0, 1: 1 })).to.eql([0, 1]);
+      expect(_.values({ one: 1, two: 2, three: 3 })).to.eql([1, 2, 3]);
+    });
+  });
 });
