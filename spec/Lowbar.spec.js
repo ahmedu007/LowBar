@@ -566,9 +566,9 @@ describe("_", () => {
       };
       const memFunc = _.memoize(func);
       memFunc(2);
-      const actual = memFunc(2);
-      const expected = actual;
-      expect(actual).to.equal(expected);
+      const result = memFunc(2);
+      const expected = 4;
+      expect(result).to.equal(expected);
     });
 
     it("should properly return when there is no matching key stored in the cache", () => {
@@ -576,10 +576,26 @@ describe("_", () => {
         return n * 2;
       };
       const memFunc = _.memoize(func);
-      const actual = memFunc(4);
+      const result = memFunc(4);
       const expected = 8;
       1;
-      expect(actual).to.equal(expected);
+      expect(result).to.equal(expected);
+    });
+  });
+
+  describe("#negate", () => {
+    it("is a function", () => {
+      expect(_.negate).to.be.a("function");
+    });
+    it("returns the function itself if not passed a function as an argument", () => {
+      expect(_.negate()).to.be.a("function");
+    });
+    it("negates the result of a function passed to it", () => {
+      let isFalsy = _.negate(Boolean);
+      expect(isFalsy(false)).to.be.true;
+      expect(isFalsy(true)).to.be.false;
+      let isOdd = _.negate(isFalsy);
+      expect(isOdd(1)).to.be.true;
     });
   });
 });

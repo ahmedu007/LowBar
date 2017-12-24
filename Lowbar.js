@@ -225,4 +225,10 @@ _.memoize = passedFunc => {
   };
 };
 
+_.negate = predicate => {
+  return x => {
+    return !predicate(x);
+  };
+};
+
 module.exports = _;
