@@ -248,8 +248,16 @@ _.every = (list, predicate) => {
       if (predicate(list[i]) !== true) return false;
     }
   }
-
   return true;
+};
+
+_.some = (list, predicate) => {
+  if (typeof predicate === "function") {
+    for (let i = 0; i < list.length; i++) {
+      if (predicate(list[i])) return true;
+    }
+  }
+  return false;
 };
 
 module.exports = _;

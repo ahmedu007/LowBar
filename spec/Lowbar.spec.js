@@ -645,4 +645,24 @@ describe("_", () => {
       expect(_.every([0, 2, 4, 6], isEven)).to.equal(true);
     });
   });
+
+  describe.only("some", () => {
+    it("is a function", () => {
+      expect(_.some).to.be.a("function");
+    });
+    it("returns false if not given a valid list", () => {
+      expect(_.some()).to.equal(false);
+      expect(_.some(5)).to.equal(false);
+      expect(_.some("hello")).to.equal(false);
+      expect(_.some(["hello"])).to.equal(false);
+      expect(_.some({ 0: "hello" })).to.equal(false);
+    });
+    it("returns true if any item in an array passes the predicate", () => {
+      const isEven = num => {
+        return num % 2 == 0;
+      };
+      expect(_.some([0, 2, 4, 6, 1, 2, 4, 6], isEven)).to.equal(true);
+      expect(_.some([true, 1, null, "yes"], Boolean)).to.equal(true);
+    });
+  });
 });
