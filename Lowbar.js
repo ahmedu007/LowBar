@@ -260,4 +260,22 @@ _.some = (list, predicate) => {
   return false;
 };
 
+_.partial = function(func, args) {
+  args = [].slice.call(arguments, 1);
+  return function() {
+    let position = 0;
+    let length = args.length;
+    let newArgs = Array(length);
+    for (let i = 0; i < length; i++) {
+      if (args[i] === _) {
+        newArgs[i] = arguments[position++];
+      } else {
+        newArgs[i] = args[i];
+      }
+    }
+    while (position < arguments.length) newArgs.push(arguments[position++]);
+    return func(...newArgs);
+  };
+};
+
 module.exports = _;

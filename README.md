@@ -27,16 +27,16 @@ The library consists of:
 20. difference
 21. memoize
 22. negate
+23. some
+24. every
 
 ## Advanced
 
-23. where
-24. throttle
 25. partial
 26. pluck
 27. delay
 28. reduce
-29. some
+29. where
 30. extends
 31. defaults
-32. every
+32. throttle

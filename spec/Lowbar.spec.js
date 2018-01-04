@@ -646,7 +646,7 @@ describe("_", () => {
     });
   });
 
-  describe.only("some", () => {
+  describe("some", () => {
     it("is a function", () => {
       expect(_.some).to.be.a("function");
     });
@@ -663,6 +663,26 @@ describe("_", () => {
       };
       expect(_.some([0, 2, 4, 6, 1, 2, 4, 6], isEven)).to.equal(true);
       expect(_.some([true, 1, null, "yes"], Boolean)).to.equal(true);
+    });
+  });
+
+  describe("partial", () => {
+    it("is a function", () => {
+      expect(_.partial).to.be.a("function");
+    });
+    it("applies a function partially by filling in its arguments", () => {
+      const subtract = (a, b) => b - a;
+      const sub5 = _.partial(subtract, 5);
+      const actual = sub5(20);
+      const expected = 15;
+      expect(actual).to.eql(expected);
+    });
+    it("_ can be used as a placeholder without changing the context", () => {
+      const subtract = (a, b) => b - a;
+      const subFrom20 = _.partial(subtract, _, 20);
+      const actual = subFrom20(5);
+      const expected = 15;
+      expect(actual).to.eql(expected);
     });
   });
 });
