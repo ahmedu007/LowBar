@@ -285,4 +285,16 @@ _.delay = function(func, ms, args) {
   }, ms);
 };
 
+_.where = (array, properties) => {
+  return array.filter(values => {
+    let count = 0;
+    for (let key in properties) {
+      if (values[key] === properties[key]) {
+        count++;
+      }
+    }
+    if (count === Object.keys(properties).length) return values;
+  });
+};
+
 module.exports = _;

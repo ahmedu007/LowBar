@@ -726,4 +726,24 @@ describe("_", () => {
       expect(spy.calledWithExactly("logged", "after", "waiting")).to.be.true;
     });
   });
+
+  describe("_.where", () => {
+    it("is a function", () => {
+      expect(_.where).to.be.a("function");
+    });
+    it("returns an array of all values that contain given properties", () => {
+      const listOfPlays = [
+        { title: "Cymbeline", author: "Shakespeare", year: 1611 },
+        { title: "Othello", author: "Shakespeare", year: 1622 },
+        { title: "The Tempest", author: "Shakespeare", year: 1611 }
+      ];
+      const properties = { author: "Shakespeare", year: 1611 };
+      const actual = _.where(listOfPlays, properties);
+      const expected = [
+        { title: "Cymbeline", author: "Shakespeare", year: 1611 },
+        { title: "The Tempest", author: "Shakespeare", year: 1611 }
+      ];
+      expect(actual).to.eql(expected);
+    });
+  });
 });
