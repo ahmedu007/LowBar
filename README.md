@@ -1,9 +1,48 @@
-<h2><p><strong>LOWBAR</strong></p></h2>
-<small><em>Underscore Library reacreated</em></small>
+# **LOWBAR**
 
-<hr />
+> ### _Underscore Library *reacreated*_
 
-The library consists of:
+---
+
+## Setup and Installation
+
+---
+
+* Please ensure that you have version 8 or above of node. To check run the following command on your terminal window
+
+```
+node -v
+```
+
+if your version is not up to date, please refer to this [guide](https://nodejs.org/en/) on how to install node and npm.
+
+* Make sure that you have git installed on your computer. You can check by typing and running in your terminal
+
+```
+git --version
+```
+
+* Navigate to the desired location where you want to copy the files and type:
+
+```
+git clone https://github.com/ahmedu007/LowBar
+```
+
+Then
+
+```
+cd LowBar
+```
+
+and then
+
+```
+npm install
+```
+
+---
+
+**The library consists of the following functions:**
 
 1. identity
 2. values
@@ -39,4 +78,17 @@ The library consists of:
 29. where
 30. extends
 31. defaults
-32. throttle
+
+---
+
+### Testing
+
+To run all the tests make sure you are in the root directory of the folder on your command line and then run:
+
+```
+npm test
+```
+
+## Author
+
+[Umair Ahmed](https://github.com/ahmedu007)
