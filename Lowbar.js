@@ -297,4 +297,8 @@ _.where = (array, properties) => {
   });
 };
 
+_.extend = (object, sources) => {
+  return Object.assign({}, object, sources);
+};
+
 module.exports = _;
