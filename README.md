@@ -6,8 +6,6 @@
 
 ## Setup and Installation
 
----
-
 * Please ensure that you have version 8 or above of node. To check run the following command on your terminal window
 
 ```
