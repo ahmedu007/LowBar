@@ -278,4 +278,11 @@ _.partial = function(func, args) {
   };
 };
 
+_.delay = function(func, ms, args) {
+  args = [].slice.call(arguments, 2);
+  return setTimeout(() => {
+    func.apply(null, args);
+  }, ms);
+};
+
 module.exports = _;
