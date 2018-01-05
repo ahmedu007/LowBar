@@ -480,6 +480,35 @@ describe("_", () => {
     });
   });
 
+  describe("#_.sortBy", () => {
+    it("is a function", () => {
+      expect(_.sortBy).to.be.a("function");
+    });
+    it("runs each list value through iteratee", () => {
+      function Sin(n) {
+        return Math.sin(n);
+      }
+      const list = [1, 2, 3, 4, 5, 6];
+      const actual = _.sortBy(list, Sin);
+      const expected = [5, 4, 6, 3, 1, 2];
+      expect(actual).to.eql(expected);
+    });
+    it("runs each object in list through iteratee", () => {
+      const stooges = [
+        { name: "moe", age: 40 },
+        { name: "larry", age: 50 },
+        { name: "curly", age: 60 }
+      ];
+      const actual = _.sortBy(stooges, "name");
+      const expected = [
+        { name: "curly", age: 60 },
+        { name: "larry", age: 50 },
+        { name: "moe", age: 40 }
+      ];
+      expect(actual).to.eql(expected);
+    });
+  });
+
   describe("#zip ", () => {
     it("is a function", () => {
       expect(_.zip).to.be.a("function");

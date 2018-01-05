@@ -172,6 +172,21 @@ _.invoke = (list, methodName, ...args) => {
   return results;
 };
 
+_.sortBy = (list, iteratee, context) => {
+  if (!context) context = this;
+  if (typeof iteratee === "function") {
+    return list.sort((a, b) => {
+      return iteratee.call(context, a) - iteratee.call(context, b);
+    });
+  } else {
+    return list.sort((a, b) => {
+      if (a[iteratee] < b[iteratee]) return -1;
+      if (a[iteratee] > b[iteratee]) return 1;
+      return 0;
+    });
+  }
+};
+
 _.zip = function() {
   const results = [];
   if (Array.isArray(arguments[0])) {
