@@ -176,7 +176,6 @@ describe("_", () => {
   describe("#filter", () => {
     it("returns an empty array for invalid arguments", () => {
       expect(_.filter("test")).to.eql([]);
-      expect(_.filter({})).to.eql([]);
       expect(_.filter(4)).to.eql([]);
     });
     it("returns an array of all the values that pass a truth test", () => {
@@ -629,15 +628,14 @@ describe("_", () => {
     function isEven(x) {
       return x % 2 === 0;
     }
-    const numArr = [1, 2, 3, 4, 5];
-    const oddArr = [1, 3, 5, 7, 9];
-    const numObj = { one: 1, two: 2, three: 3, four: 4, five: 5 };
-    const oddObj = { one: 1, three: 3, five: 5, seven: 7, nine: 9 };
+
     it("returns true if any item passes predicate test", () => {
-      expect(_.some(numArr, isEven)).to.equal(true);
-      expect(_.some(oddArr, isEven)).to.equal(false);
-      expect(_.some(numObj, isEven)).to.equal(true);
-      expect(_.some(oddObj, isEven)).to.equal(false);
+      expect(
+        _.some({ one: 1, two: 2, three: 3, four: 4, five: 5 }, isEven)
+      ).to.equal(true);
+      expect(
+        _.some({ one: 1, three: 3, five: 5, seven: 7, nine: 9 }, isEven)
+      ).to.equal(false);
     });
   });
 

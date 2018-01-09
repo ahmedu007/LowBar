@@ -49,14 +49,25 @@ _.indexOf = (array, value, boolean) => {
 
 _.filter = (list, predicate, context) => {
   if (!context) context = this;
-  if (!Array.isArray(list)) return [];
   let results = [];
-  for (let i = 0; i < list.length; i++) {
-    if (predicate.call(context, list[i])) {
-      results.push(list[i]);
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      if (predicate.call(context, list[i])) {
+        results.push(list[i]);
+      }
     }
+    return results;
   }
-  return results;
+
+  if (typeof list === "object") {
+    let result = {};
+    for (let key in list) {
+      if (predicate.call(context, list[key])) {
+        result[key] = list[key];
+      }
+      return result;
+    }
+  } else return [];
 };
 
 _.reject = (list, predicate, context) => {
