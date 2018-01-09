@@ -287,9 +287,14 @@ _.every = (list, predicate, context) => {
 
 _.some = (list, predicate, context) => {
   if (!context) context = this;
-  if (typeof predicate === "function") {
+  if (typeof predicate === "function" && Array.isArray(list)) {
     for (let i = 0; i < list.length; i++) {
       if (predicate.call(context, list[i])) return true;
+    }
+  }
+  if (typeof predicate === "function" && typeof list === "object") {
+    for (let key in list) {
+      if (predicate.call(context, list[key])) return true;
     }
   }
   return false;
