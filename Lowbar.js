@@ -202,6 +202,16 @@ _.zip = function() {
   return results;
 };
 
+_.sortedIndex = (list, value, iteratee) => {
+  if (!Array.isArray(list) && typeof list !== "object") return list;
+
+  if (iteratee) {
+    return binarySearch(_.sortBy(list, iteratee), value);
+  } else {
+    return binarySearch(list, value);
+  }
+};
+
 _.flatten = arr => {
   return arr.reduce((flat, toFlatten) => {
     return flat.concat(
@@ -326,4 +336,27 @@ _.defaults = (object, defaults) => {
   return object;
 };
 
+_.throttle = () => {};
+
 module.exports = _;
+
+function binarySearch(list, name) {
+  let start = 0;
+  let end = list.length - 1;
+
+  for (let i = 0; i < 10; i++) {
+    var mid = Math.floor((end + start) / 2);
+
+    if (list[mid] === name) {
+      return mid;
+    }
+    if (name < list[mid]) {
+      end = mid - 1;
+    }
+    if (name > list[mid]) {
+      start = mid + 1;
+    }
+  }
+
+  return mid + 1;
+}

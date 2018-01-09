@@ -535,6 +535,20 @@ describe("_", () => {
     });
   });
 
+  describe("_.sortedIndex", () => {
+    it("finds the index where the value should be inserted into an array to maintain order", () => {
+      expect(_.sortedIndex([1, 2, 4, 5, 6, 7], 3)).to.equal(2);
+      expect(_.sortedIndex([3, 4, 5], 1)).to.equal(0);
+      expect(_.sortedIndex([1, 2, 4, 5, 6, 7], 8)).to.equal(6);
+    });
+
+    it("works for objects when the iteratee is the name of the property to search for", () => {
+      expect(
+        _.sortedIndex([{ a: 1 }, { a: 2 }, { a: 4 }], { a: 3 }, "a")
+      ).to.equal(2);
+    });
+  });
+
   describe("flatten", () => {
     it("is a function", () => {
       expect(_.flatten).to.be.a("function");
@@ -810,6 +824,12 @@ describe("_", () => {
         flavor: "chocolate",
         sprinkles: "lots"
       });
+    });
+  });
+
+  describe("#throttle", () => {
+    it("it is a function", () => {
+      expect(_.throttle).to.be.a("function");
     });
   });
 });
