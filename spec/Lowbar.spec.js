@@ -11,9 +11,6 @@ describe("_", () => {
   });
 
   describe("#identity", () => {
-    it("is a function", () => {
-      expect(_.identity).to.be.a("function");
-    });
     it("returns the same output as the argument", () => {
       expect(_.identity("hello")).to.equal("hello");
       expect(_.identity(123)).to.equal(123);
@@ -24,9 +21,6 @@ describe("_", () => {
   });
 
   describe("#first", () => {
-    it("is a function", () => {
-      expect(_.first).to.be.a("function");
-    });
     it("returns undefined for invalid input", () => {
       expect(_.first()).to.eql(undefined);
     });
@@ -79,9 +73,6 @@ describe("_", () => {
   });
 
   describe("#last", () => {
-    it("is a function", () => {
-      expect(_.last).to.be.a("function");
-    });
     it("returns undefined for invalid input", () => {
       expect(_.last()).to.eql(undefined);
     });
@@ -134,9 +125,6 @@ describe("_", () => {
   });
 
   describe("#each", () => {
-    it("is a function", () => {
-      expect(_.each).to.be.a("function");
-    });
     it("it should count the number of iterations in the function", () => {
       const spy = sinon.spy();
       _.each([1, 2, 3], spy);
@@ -170,9 +158,6 @@ describe("_", () => {
   });
 
   describe("#indexOf", () => {
-    it("is a function", () => {
-      expect(_.indexOf).to.be.a("function");
-    });
     it("return the index of the value in the array", () => {
       expect(_.indexOf([1, 2, 3, "a"], 3)).to.equal(2);
       expect(_.indexOf([1, 2, 3, "a"], "a")).to.equal(3);
@@ -189,9 +174,6 @@ describe("_", () => {
   });
 
   describe("#filter", () => {
-    it("is a function", () => {
-      expect(_.filter).to.be.a("function");
-    });
     it("returns an empty array for invalid arguments", () => {
       expect(_.filter("test")).to.eql([]);
       expect(_.filter({})).to.eql([]);
@@ -222,9 +204,6 @@ describe("_", () => {
   });
 
   describe("#reject", () => {
-    it("is a function", () => {
-      expect(_.reject).to.be.a("function");
-    });
     it("returns an empty array for invalid arguments", () => {
       expect(_.reject("test")).to.eql([]);
       expect(_.reject({})).to.eql([]);
@@ -255,9 +234,6 @@ describe("_", () => {
   });
 
   describe("#uniq", () => {
-    it("is a function", () => {
-      expect(_.uniq).to.be.a("function");
-    });
     it("returns an empty array for invalid arguments", () => {
       expect(_.uniq({})).to.eql([]);
       expect(_.uniq(4)).to.eql([]);
@@ -284,9 +260,6 @@ describe("_", () => {
   });
 
   describe("#map", () => {
-    it("is a function", () => {
-      expect(_.map).to.be.a("function");
-    });
     it("return an empty array if the argument is not an array", () => {
       expect(_.map(5)).to.eql([]);
       expect(_.map(true)).to.eql([]);
@@ -315,9 +288,6 @@ describe("_", () => {
   });
 
   describe("#contains", () => {
-    it("is a function", () => {
-      expect(_.contains).to.be.a("function");
-    });
     it("returns false for invalid inputs", () => {
       expect(_.contains(true, true)).to.equal(false);
       expect(_.contains(1234567, 2)).to.equal(false);
@@ -341,9 +311,6 @@ describe("_", () => {
   });
 
   describe("#pluck", () => {
-    it("is a function", () => {
-      expect(_.pluck).to.be.a("function");
-    });
     it("should return an empty array for invalid arguments", () => {
       expect(_.pluck("str")).to.eql([]);
       expect(_.pluck(5)).to.eql([]);
@@ -366,9 +333,6 @@ describe("_", () => {
   });
 
   describe("#reduce", () => {
-    it("is a function", () => {
-      expect(_.reduce).to.be.a("function");
-    });
     it("returns an empty array for invalid arguments", () => {
       expect(_.reduce("str")).to.eql(undefined);
       expect(_.reduce()).to.eql(undefined);
@@ -388,9 +352,6 @@ describe("_", () => {
   });
 
   describe("#once", () => {
-    it("is a function", () => {
-      expect(_.once).to.be.a("function");
-    });
     it("the returned function can only be called once", () => {
       const spy = sinon.spy();
       const spyOnce = _.once(spy);
@@ -408,9 +369,6 @@ describe("_", () => {
   });
 
   describe("#shuffle", () => {
-    it("is a function", () => {
-      expect(_.shuffle).to.be.a("function");
-    });
     it("should return a shuffled copy of the array", () => {
       const actual = _.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
       const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -459,9 +417,6 @@ describe("_", () => {
   });
 
   describe("#invoke", () => {
-    it("is a function", () => {
-      expect(_.invoke).to.be.a("function");
-    });
     it("should call sort method on each element in an array and return results in an array", () => {
       let result = _.invoke([[5, 1, 7], [3, 2, 1]], "sort");
       expect(result).to.eql([[1, 5, 7], [1, 2, 3]]);
@@ -481,9 +436,6 @@ describe("_", () => {
   });
 
   describe("#_.sortBy", () => {
-    it("is a function", () => {
-      expect(_.sortBy).to.be.a("function");
-    });
     it("runs each list value through iteratee", () => {
       function Sin(n) {
         return Math.sin(n);
@@ -510,10 +462,6 @@ describe("_", () => {
   });
 
   describe("#zip ", () => {
-    it("is a function", () => {
-      expect(_.zip).to.be.a("function");
-    });
-
     it("merges arrays together at their corresponding indexes", () => {
       const actual = _.zip(
         ["Jim", "John", "Jimmy"],
@@ -550,9 +498,6 @@ describe("_", () => {
   });
 
   describe("flatten", () => {
-    it("is a function", () => {
-      expect(_.flatten).to.be.a("function");
-    });
     it("can flatten nested arrays", () => {
       const nestedArray = [1, [2], [3, [[[4]]]]];
       expect(_.flatten(nestedArray)).to.eql([1, 2, 3, 4]);
@@ -560,10 +505,6 @@ describe("_", () => {
   });
 
   describe("intersection", () => {
-    it("is a function", () => {
-      expect(_.intersection).to.be.a("function");
-    });
-
     it("should take the set intersection of two arrays", () => {
       const stooges = ["moe", "curly", "larry"];
       const leaders = ["moe", "groucho"];
@@ -578,10 +519,6 @@ describe("_", () => {
   });
 
   describe("difference", () => {
-    it("is a function", () => {
-      expect(_.difference).to.be.a("function");
-    });
-
     it("returns values that are not present in other arrays", () => {
       const result = _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
       const expected = [1, 3, 4];
@@ -599,10 +536,6 @@ describe("_", () => {
   });
 
   describe("#memoize", () => {
-    it("is a function", () => {
-      expect(_.memoize).to.be.a("function");
-    });
-
     it("should properly return a previously cached result", () => {
       const func = n => {
         return n * 2;
@@ -627,9 +560,6 @@ describe("_", () => {
   });
 
   describe("#negate", () => {
-    it("is a function", () => {
-      expect(_.negate).to.be.a("function");
-    });
     it("returns the function itself if not passed a function as an argument", () => {
       expect(_.negate()).to.be.a("function");
     });
@@ -643,9 +573,6 @@ describe("_", () => {
   });
 
   describe("#values", () => {
-    it("is a function", () => {
-      expect(_.values).to.be.a("function");
-    });
     it("returns an empty array when not given an array or valid object", () => {
       expect(_.values()).to.eql([]);
       expect(_.values("hello")).to.eql([]);
@@ -690,9 +617,6 @@ describe("_", () => {
   });
 
   describe("some", () => {
-    it("is a function", () => {
-      expect(_.some).to.be.a("function");
-    });
     it("returns false if not given a valid list", () => {
       expect(_.some()).to.equal(false);
       expect(_.some(5)).to.equal(false);
@@ -710,9 +634,6 @@ describe("_", () => {
   });
 
   describe("partial", () => {
-    it("is a function", () => {
-      expect(_.partial).to.be.a("function");
-    });
     it("applies a function partially by filling in its arguments", () => {
       const subtract = (a, b) => b - a;
       const sub5 = _.partial(subtract, 5);
@@ -730,9 +651,6 @@ describe("_", () => {
   });
 
   describe("delay", () => {
-    it("is a function", () => {
-      expect(_.delay).to.be.a("function");
-    });
     let clock;
     before(() => {
       clock = sinon.useFakeTimers();
@@ -771,9 +689,6 @@ describe("_", () => {
   });
 
   describe("_.where", () => {
-    it("is a function", () => {
-      expect(_.where).to.be.a("function");
-    });
     it("returns an array of all values that contain given properties", () => {
       const listOfPlays = [
         { title: "Cymbeline", author: "Shakespeare", year: 1611 },
@@ -791,9 +706,6 @@ describe("_", () => {
   });
 
   describe("#_.extend", () => {
-    it("is a function", () => {
-      expect(_.extend).to.be.a("function");
-    });
     it("returns a combined object", () => {
       const obj1 = { name: "moe" };
       const obj2 = { age: 50 };
@@ -814,9 +726,6 @@ describe("_", () => {
   });
 
   describe("#_.default", () => {
-    it("is a function", () => {
-      expect(_.defaults).to.be.a("function");
-    });
     it("returns object with values added if not defined", () => {
       const obj1 = { flavor: "chocolate" };
       const obj2 = { flavor: "vanilla", sprinkles: "lots" };
