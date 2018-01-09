@@ -26,14 +26,15 @@ _.last = (input, n) => {
   return undefined;
 };
 
-_.each = (list, iteratee) => {
+_.each = (list, iteratee, context) => {
+  if (!context) context = this;
   if (Array.isArray(list) || typeof list === "string") {
     for (let i = 0; i < list.length; i++) {
-      iteratee(list[i], i, list);
+      iteratee.call(context, list[i], i, list);
     }
   } else {
     for (let key in list) {
-      iteratee(list[key], key, list);
+      iteratee.call(context, list[key], key, list);
     }
   }
 };
@@ -46,22 +47,24 @@ _.indexOf = (array, value, boolean) => {
   return -1;
 };
 
-_.filter = (list, predicate) => {
+_.filter = (list, predicate, context) => {
+  if (!context) context = this;
   if (!Array.isArray(list)) return [];
   let results = [];
   for (let i = 0; i < list.length; i++) {
-    if (predicate(list[i])) {
+    if (predicate.call(context, list[i])) {
       results.push(list[i]);
     }
   }
   return results;
 };
 
-_.reject = (list, predicate) => {
+_.reject = (list, predicate, context) => {
+  if (!context) context = this;
   if (!Array.isArray(list)) return [];
   let results = [];
   for (let i = 0; i < list.length; i++) {
-    if (!predicate(list[i])) {
+    if (!predicate.call(context, list[i])) {
       results.push(list[i]);
     }
   }
@@ -78,15 +81,16 @@ _.uniq = array => {
   return result;
 };
 
-_.map = (input, fn) => {
+_.map = (input, fn, context) => {
   let result = [];
+  if (!context) context = this;
   if (typeof input === "object" && !Array.isArray(input)) {
     for (let key in input) {
-      result.push(fn(input[key]));
+      result.push(fn.call(context, input[key]));
     }
   }
   for (let i = 0; i < input.length; i++) {
-    result.push(fn(input[i]));
+    result.push(fn.call(context, input[i]));
   }
   return result;
 };
@@ -117,13 +121,16 @@ _.pluck = (list, property) => {
   return result;
 };
 
-_.reduce = (list, iteratee, acc) => {
-  if (Array.isArray(list)) {
-    for (let i = 0; i < list.length; i++) {
-      acc += list[i];
+_.reduce = (list, iteratee, memo, context) => {
+  if (!context) context = this;
+  _.each(list, function(item) {
+    if (memo === undefined) {
+      return (memo = list[0]);
+    } else {
+      return (memo = iteratee.call(context, memo, item));
     }
-  }
-  return acc;
+  });
+  return memo;
 };
 
 _.once = fn => {
@@ -202,7 +209,8 @@ _.zip = function() {
   return results;
 };
 
-_.sortedIndex = (list, value, iteratee) => {
+_.sortedIndex = (list, value, iteratee, context) => {
+  if (!context) context = this;
   if (!Array.isArray(list) && typeof list !== "object") return list;
 
   if (iteratee) {
@@ -267,19 +275,21 @@ _.values = obj => {
   return result;
 };
 
-_.every = (list, predicate) => {
+_.every = (list, predicate, context) => {
+  if (!context) context = this;
   if (typeof predicate === "function") {
     for (let i = 0; i < list.length; i++) {
-      if (predicate(list[i]) !== true) return false;
+      if (predicate.call(context, list[i]) !== true) return false;
     }
   }
   return true;
 };
 
-_.some = (list, predicate) => {
+_.some = (list, predicate, context) => {
+  if (!context) context = this;
   if (typeof predicate === "function") {
     for (let i = 0; i < list.length; i++) {
-      if (predicate(list[i])) return true;
+      if (predicate.call(context, list[i])) return true;
     }
   }
   return false;

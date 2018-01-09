@@ -333,11 +333,6 @@ describe("_", () => {
   });
 
   describe("#reduce", () => {
-    it("returns an empty array for invalid arguments", () => {
-      expect(_.reduce("str")).to.eql(undefined);
-      expect(_.reduce()).to.eql(undefined);
-      expect(_.reduce(undefined)).to.eql(undefined);
-    });
     it("returns the sum of all the items in the list", () => {
       expect(
         _.reduce(
