@@ -26,7 +26,7 @@ _.last = (input, n) => {
   return undefined;
 };
 
-_.each = (list, iteratee, context) => {
+_.each = (list, iteratee = _.identity, context) => {
   if (!context) context = this;
   if (Array.isArray(list) || typeof list === "string") {
     for (let i = 0; i < list.length; i++) {
@@ -47,7 +47,7 @@ _.indexOf = (array, value, boolean) => {
   return -1;
 };
 
-_.filter = (list, predicate, context) => {
+_.filter = (list, predicate = _.identity, context) => {
   if (!context) context = this;
   let results = [];
   if (Array.isArray(list)) {
@@ -70,7 +70,7 @@ _.filter = (list, predicate, context) => {
   } else return [];
 };
 
-_.reject = (list, predicate, context) => {
+_.reject = (list, predicate = _.identity, context) => {
   if (!context) context = this;
   if (!Array.isArray(list)) return [];
   let results = [];
@@ -92,7 +92,7 @@ _.uniq = array => {
   return result;
 };
 
-_.map = (input, fn, context) => {
+_.map = (input, fn = _.identity, context) => {
   let result = [];
   if (!context) context = this;
   if (typeof input === "object" && !Array.isArray(input)) {
@@ -132,9 +132,9 @@ _.pluck = (list, property) => {
   return result;
 };
 
-_.reduce = (list, iteratee, memo, context) => {
+_.reduce = (list, iteratee = _.identity, memo, context) => {
   if (!context) context = this;
-  _.each(list, function(item) {
+  _.each(list, function (item) {
     if (memo === undefined) {
       return (memo = list[0]);
     } else {
@@ -205,7 +205,7 @@ _.sortBy = (list, iteratee, context) => {
   }
 };
 
-_.zip = function() {
+_.zip = function () {
   const results = [];
   if (Array.isArray(arguments[0])) {
     for (var i = 0; i < arguments[0].length; i++) {
@@ -288,6 +288,7 @@ _.values = obj => {
 
 _.every = (list, predicate, context) => {
   if (!context) context = this;
+  console.log(predicate)
   if (typeof predicate === "function") {
     for (let i = 0; i < list.length; i++) {
       if (predicate.call(context, list[i]) !== true) return false;
@@ -311,9 +312,9 @@ _.some = (list, predicate, context) => {
   return false;
 };
 
-_.partial = function(func, args) {
+_.partial = function (func, args) {
   args = [].slice.call(arguments, 1);
-  return function() {
+  return function () {
     let position = 0;
     let length = args.length;
     let newArgs = Array(length);
@@ -329,7 +330,7 @@ _.partial = function(func, args) {
   };
 };
 
-_.delay = function(func, ms, args) {
+_.delay = function (func, ms, args) {
   args = [].slice.call(arguments, 2);
   return setTimeout(() => {
     func.apply(null, args);
@@ -362,7 +363,7 @@ _.defaults = (object, defaults) => {
   return object;
 };
 
-_.throttle = () => {};
+_.throttle = () => { };
 
 module.exports = _;
 
