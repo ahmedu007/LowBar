@@ -584,7 +584,7 @@ describe("_", () => {
     });
   });
 
-  describe.only("#every", () => {
+  describe("#every", () => {
     it("it is a function", () => {
       expect(_.every).to.be.a("function");
     });
@@ -742,9 +742,31 @@ describe("_", () => {
     });
   });
 
-  describe("#throttle", () => {
-    it("it is a function", () => {
-      expect(_.throttle).to.be.a("function");
+  describe('_.throttle', () => {
+    beforeEach(() => {
+      this.clock = sinon.useFakeTimers();
+    });
+    afterEach(() => {
+      this.clock.restore();
+    });
+    it('calls the passed functon only once per wait period', () => {
+      const spy = sinon.spy();
+      const throttled = _.throttle(spy, 200);
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      expect(spy.callCount).to.equal(1);
+      this.clock.tick(200);
+      throttled();
+      expect(spy.callCount).to.equal(2);
+    });
+    it('returns result of passed function', () => {
+      const double = (n) => n * 2;
+      const doubleThrottle = _.throttle(double);
+      expect(doubleThrottle(2)).to.equal(4);
     });
   });
 });

@@ -288,7 +288,6 @@ _.values = obj => {
 
 _.every = (list, predicate, context) => {
   if (!context) context = this;
-  console.log(predicate)
   if (typeof predicate === "function") {
     for (let i = 0; i < list.length; i++) {
       if (predicate.call(context, list[i]) !== true) return false;
@@ -363,8 +362,17 @@ _.defaults = (object, defaults) => {
   return object;
 };
 
-_.throttle = () => { };
-
+_.throttle = (fn, wait) => {
+  let callFunc = true;
+  return function () {
+    if (callFunc) {
+      let result = fn.apply(this, arguments)
+      callFunc = false;
+      setTimeout(() => callFunc = true, wait);
+      return result;
+    }
+  }
+}
 module.exports = _;
 
 function binarySearch(list, name) {
